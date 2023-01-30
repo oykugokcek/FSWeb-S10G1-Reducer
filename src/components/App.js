@@ -1,7 +1,15 @@
 import React, { useReducer } from "react";
 import "./App.css";
 import reducer, { initialState } from "../reducers/index";
-
+import {
+  addOne,
+  applyNumber,
+  saveMemo,
+  sendMemo,
+  clearDisplay,
+  clearMemo,
+  changeOperation,
+} from "../actions";
 import TotalDisplay from "./TotalDisplay";
 import CalcButton from "./CalcButton";
 
@@ -30,90 +38,75 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton
-                value={"M+"}
-                onClick={() => dispatch({ type: "SAVE_MEMO" })}
-              />
-              <CalcButton
-                value={"MR"}
-                onClick={() => dispatch({ type: "SEND_MEMO" })}
-              />
-              <CalcButton
-                value={"MC"}
-                onClick={() => dispatch({ type: "CLEAR_MEMO" })}
-              />
+              <CalcButton value={"M+"} onClick={() => dispatch(saveMemo())} />
+              <CalcButton value={"MR"} onClick={() => dispatch(sendMemo())} />
+              <CalcButton value={"MC"} onClick={() => dispatch(clearMemo())} />
             </div>
 
             <div className="row">
               <CalcButton
                 value={1}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 1 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
               <CalcButton
                 value={2}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 2 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
               <CalcButton
                 value={3}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 3 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
             </div>
 
             <div className="row">
               <CalcButton
                 value={4}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 4 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
               <CalcButton
                 value={5}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 5 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
               <CalcButton
                 value={6}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 6 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
             </div>
 
             <div className="row">
               <CalcButton
                 value={7}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 7 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
               <CalcButton
                 value={8}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 8 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
               <CalcButton
                 value={9}
-                onClick={() => dispatch({ type: "APPLY_NUMBER", payload: 9 })}
+                onClick={(e) => dispatch(applyNumber(Number(e.target.value)))}
               />
             </div>
 
             <div className="row">
               <CalcButton
                 value={"+"}
-                onClick={() =>
-                  dispatch({ type: "CHANGE_OPERATION", payload: "+" })
-                }
+                onClick={() => dispatch(changeOperation("+"))}
               />
               <CalcButton
                 value={"*"}
-                onClick={() =>
-                  dispatch({ type: "CHANGE_OPERATION", payload: "*" })
-                }
+                onClick={() => dispatch(changeOperation("*"))}
               />
               <CalcButton
                 value={"-"}
-                onClick={() =>
-                  dispatch({ type: "CHANGE_OPERATION", payload: "-" })
-                }
+                onClick={() => dispatch(changeOperation("-"))}
               />
             </div>
 
             <div className="row ce_button">
               <CalcButton
                 value={"CE"}
-                onClick={() => dispatch({ type: "CLEAR_DISPLAY" })}
+                onClick={() => dispatch(clearDisplay())}
               />
             </div>
           </form>
